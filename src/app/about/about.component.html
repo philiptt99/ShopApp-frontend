@@ -71,6 +71,18 @@
       </div>
     </div>
   </div>
+
+  <div class="column">
+    <div class="card">
+      <img src={{src}} width="100" height="100"> 
+        <br>
+        Name={{fullname}}<br>
+        email={{email}}<br>
+        message={{message}}    
+         
+    </div>
+  </div>
+
 </div>
 
 
@@ -80,31 +92,23 @@
 <div class="about-section">
 <h1>Want to be in our team?</h1>
 <br><br>
-<a class="btn btn-primary mb-3" (click)="addBook()">Click here to join!</a>
-<div class="container row">
-  <div class="col-md-6">
-    <table class="table">
-      <thead>
-        <tr>
-          <!-- <th>ID</th> -->
-          <th>Name</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let team of teams">
-          <!-- <td>{{team.id}}</td> -->
-          <td>{{team.name}}</td>
-          <td>
-            <button type="button" class="btn btn-primary" (click)="viewBook(team.id)">Show Details</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="col-md-6">
-    <app-viewbook *ngIf="action === 'view'" [team]="selectedTeam" (teamDeletedEvent)="refreshData()"></app-viewbook>
-    <app-addbook *ngIf="action === 'edit' || action === 'add'" [team]="selectedBook" (teamAddedEvent)="refreshData()"></app-addbook>
-  </div>
-</div>
-</div>
+
+<button (click)="onClick1()" class="row container-fluid" id="divshow"> add member {{show1}}</button>
+<ng-template [ngIf]="show1"><div>
+<label class="btn btn-default">
+  <form #userlogin = "ngForm" (ngSubmit) = "onClick(userlogin.value)">
+   <input type = "text" name = "fullName" placeholder = "Your full name" ngModel>
+   <input type = "text" name = "email" placeholder = "Your email" ngModel>
+    <textarea name = "message" placeholder = "Your message" ngModel></textarea>
+    <br/>
+    <button> button {{show}}</button>
+  </form>
+    <ng-template [ngIf]="show"><div><input type="file" (change)="selectFile($event)"></div>
+    </ng-template>
+  </label>
+  <br>
+  <br>
+
+  <button class="btn btn-success" [disabled]="!selectedFiles" (click)="upload()">Upload</button>
+  
+</div></ng-template>

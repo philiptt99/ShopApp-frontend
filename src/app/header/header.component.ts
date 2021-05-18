@@ -26,7 +26,8 @@ export class HeaderComponent implements OnInit {
   register = {"name":"","email":"","mobile":"","password":"","re_password":""}
   welcomeUsername = "";
   productsList:any;
-
+  resetemail ="";
+  show:boolean = false;
   constructor(private router:Router,private cartService:CartServiceService, 
     private http:HttpServiceService){
     let request = {}
@@ -53,7 +54,28 @@ export class HeaderComponent implements OnInit {
     this.isLogin = false;
   }
 
+  forgotpassword(){
+    alert("inside forgot password ");
+    if(this.resetemail == ""){
+      alert("email should not be empty");
+      return;
+    }
+    let request ={
+      "resetemail": this.resetemail,
+    }
+    this.http.postRequest('api/signup/resetemail',request).subscribe(data=>{
+       console.log("connected to server ${request}");
+       console.log(data);
+    },error=>{
+      alert("Error in reset data "+error);
+    })
+  }
+
   ngOnInit() {
+  }
+
+  toggle(){
+    this.show = !this.show;
   }
   loginUserCheck(){
     if(this.mobile == ""){

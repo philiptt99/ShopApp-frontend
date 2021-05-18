@@ -27,6 +27,11 @@
                           <input (click)="loginUserCheck()" type="submit" value="Sign in"/>
                         </div>
                       </form>
+                      <a (click)="toggle()">Forgot your password?</a>
+                      <div class="re_password" *ngIf="show">
+                        <input [(ngModel)]="resetemail" name="Email" placeholder="Enter your Email Address" type="text" required="">
+                       <input (click)="forgotpassword()" type="submit" value="Send"/>
+                   </div> 
                     </div>
                   </div> 
                 </div>	 
